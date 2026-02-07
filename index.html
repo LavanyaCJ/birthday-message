@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🎂 Birthday Surprise 🎉</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle, #e8f5e9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* 🎈 Balloons (Hidden first) */
+.balloons {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    display: none;
+}
+
+.balloons.show {
+    display: block;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -120px;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.9;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: #666;
+    left: 50%;
+    top: 80px;
+}
+
+.b1 { background: #ff4e50; left: 10%; animation-delay: 2s; }
+.b2 { background: #4facfe; left: 30%; animation-delay: 0s; }
+.b3 { background: #f9d423; left: 50%; animation-delay: 3s; }
+.b4 { background: #ff7eb3; left: 70%; animation-delay: 0s; }
+.b5 { background: #8fd3f4; left: 90%; animation-delay: 2s; }
+.b6 { background: #ff7eb3; left: 20%; animation-delay: 4s; }
+.b7 { background: #e84393; left: 80%; animation-delay: 4s; }
+.b8 { background: #98ff98; left: 50%; animation-delay: 6s; }
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* 🎁 Card */
+.container {
+    perspective: 1200px;
+    z-index: 10;
+}
+
+.card {
+    width: 420px;
+    height: 220px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    cursor: pointer;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+.side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.front {
+    background: linear-gradient(#d4af37);
+    color: white;
+    font-size: 26px;
+}
+
+.back {
+    background: #e6e6fa;
+    transform: rotateY(180deg);
+    text-align: center;
+    padding: 20px;
+}
+
+.back h2 {
+    color: #ff4081;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎈 Balloons -->
+<div class="balloons" id="balloons">
+    <div class="balloon b1"></div>
+    <div class="balloon b2"></div>
+    <div class="balloon b3"></div>
+    <div class="balloon b4"></div>
+    <div class="balloon b5"></div>
+    <div class="balloon b6"></div>
+    <div class="balloon b7"></div>
+    <div class="balloon b8"></div>
+</div>
+
+<div class="container">
+    <div class="card" onclick="flipCard()">
+        <div class="side front">
+            🎁 Happy Birthday 🎁
+        </div>
+
+        <div class="side back">
+            <h2>🎂 Wishing<br> You Many More <br>Happy Returns of <br>the Day 🎉</h2>
+            <p>✨ May All Your Dreams Come True 🥰 <br> ❤️Enjoy Your Day Filled With Happiness❤️ <br> 🥰Always Keep a Smile on Your Face✨</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function flipCard() {
+    document.querySelector('.card').classList.toggle('flip');
+    document.getElementById('balloons').classList.add('show');
+}
+</script> 
+
+</body>
+</html>
